@@ -1,0 +1,8 @@
+version: '3'
+services:
+  spring:
+    image: kusitms29thsoulliveb/soul-live-b:latest
+    container_name: soul-live-b-container
+    ports:
+      - 8080:8080
+
