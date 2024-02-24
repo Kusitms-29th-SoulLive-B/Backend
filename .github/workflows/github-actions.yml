@@ -45,10 +45,11 @@ jobs:
         env:
           DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+          DOCKER_IMAGE: ${{secrets.DOCKER_IMAGE}}
         run: |
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-          docker build -t $DOCKER_USERNAME/cicd .
-          docker push $DOCKER_USERNAME/cicd
+          docker build -t $DOCKER_USERNAME/$DOCKER_IMAGE .
+          docker push $DOCKER_USERNAME/$DOCKER_IMAGE
 
   deploy:
     needs: build
