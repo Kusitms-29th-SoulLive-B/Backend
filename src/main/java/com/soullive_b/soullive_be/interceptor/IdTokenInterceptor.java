@@ -11,8 +11,8 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.soullive_b.soullive_be.exception.notfound.JwtExpiredException;
-import com.soullive_b.soullive_be.exception.notfound.JwtInvalidException;
+import com.soullive_b.soullive_be.exception.jwt.JwtExpiredException;
+import com.soullive_b.soullive_be.exception.jwt.JwtInvalidException;
 import com.soullive_b.soullive_be.provider.CustomJwkProvider;
 import com.soullive_b.soullive_be.util.JwtUtil;
 import com.soullive_b.soullive_be.validation.TokenValidator;
@@ -25,8 +25,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import java.security.interfaces.RSAPublicKey;
 import java.util.Map;
-
-import static com.soullive_b.soullive_be.exception.ExceptionContent.INVALID_TOKEN;
 
 /**
  * Class Description
