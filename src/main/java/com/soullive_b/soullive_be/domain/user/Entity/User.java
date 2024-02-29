@@ -1,4 +1,4 @@
-package com.soullive_b.soullive_be.domain.user.controller.Entity;
+package com.soullive_b.soullive_be.domain.user.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
