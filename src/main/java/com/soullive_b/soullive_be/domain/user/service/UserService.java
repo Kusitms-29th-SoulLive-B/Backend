@@ -15,7 +15,7 @@ public class UserService {
     @Value("${jwt.secret}")
     private String secretKey;
 
-    private final UserRepository memberRepository;
+    private final UserRepository userRepository;
 
 
     /**
@@ -24,12 +24,14 @@ public class UserService {
      * @return
      */
     public LoginResponse login(Long kakaoId) {
+        log.info(kakaoId.toString());
         Boolean isUser = false;
         Long userId;
         String accessToken;
 
         try {
-            userId = memberRepository.findBySocialId(kakaoId).getId();
+            userId = userRepository.findBySocialId(kakaoId).getId();
+            isUser = true;
         }catch (NullPointerException e){
             userId = 0L;
         }
