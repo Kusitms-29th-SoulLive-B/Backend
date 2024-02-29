@@ -1,6 +1,6 @@
 package com.soullive_b.soullive_be.domain.user.service;
 
-import com.soullive_b.soullive_be.domain.user.repository.UserRepository;
+import com.soullive_b.soullive_be.domain.user.repository.MemberRepository;
 import com.soullive_b.soullive_be.domain.user.response.LoginResponse;
 import com.soullive_b.soullive_be.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ public class UserService {
     @Value("${jwt.secret}")
     private String secretKey;
 
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
 
 
     /**
@@ -28,7 +28,7 @@ public class UserService {
         Long userId;
         String accessToken;
 
-        userId = userRepository.findBySocialId(kakaoId).getId();
+        userId = memberRepository.findBySocialId(kakaoId).getId();
         accessToken = JwtUtil.createAccessToken(userId, kakaoId, secretKey);
 
         return LoginResponse.of(isUser, accessToken);
