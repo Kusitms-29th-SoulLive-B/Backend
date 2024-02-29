@@ -1,6 +1,8 @@
 package com.soullive_b.soullive_be.util;
 
 
+import com.soullive_b.soullive_be.exception.notfound.JwtExpiredException;
+import com.soullive_b.soullive_be.exception.notfound.JwtInvalidException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.SignatureException;
 import lombok.extern.slf4j.Slf4j;
@@ -97,9 +99,9 @@ public class JwtUtil {
                     .build().parseClaimsJws(token).getBody()
                     .getExpiration().before(new Date()); // expired 된게 지금보다 전인가? -> 그러면 만료된거임
         }catch (ExpiredJwtException e){
-            throw new JwtExpiredException(EXPIRED_TOKEN);
+            throw new JwtExpiredException();
         }catch (SignatureException e){
-            throw new JwtInvalidException(INVALID_TOKEN);
+            throw new JwtInvalidException();
         }
     }
 

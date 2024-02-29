@@ -11,8 +11,11 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.soullive_b.soullive_be.exception.notfound.JwtExpiredException;
+import com.soullive_b.soullive_be.exception.notfound.JwtInvalidException;
 import com.soullive_b.soullive_be.provider.CustomJwkProvider;
 import com.soullive_b.soullive_be.util.JwtUtil;
+import com.soullive_b.soullive_be.validation.TokenValidator;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +25,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import java.security.interfaces.RSAPublicKey;
 import java.util.Map;
+
+import static com.soullive_b.soullive_be.exception.ExceptionContent.INVALID_TOKEN;
 
 /**
  * Class Description
@@ -44,21 +49,19 @@ public class IdTokenInterceptor implements HandlerInterceptor {
     private String clientId;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String idToken = request.getAttribute("token").toString();
+        String idToken = TokenValidator.tokenValidator(request, response);
         log.info(idToken);
 
         Map<String, Object> payload = JwtUtil.getTokenPayload(idToken);
 
-        String nonce = request.getHeader("nonce");
-
         //페이로드 검증
-        if(!validatePayload(payload, nonce)){
-            throw new JwtInvalidException(INVALID_TOKEN);
+        if(!validatePayload(payload)){
+            throw new JwtInvalidException();
         }
 
         //서명 검증
         if(!validateSign(idToken)){
-            throw new JwtInvalidException(INVALID_TOKEN);
+            throw new JwtInvalidException();
         }
 
         //카카오id 가져오기
@@ -74,7 +77,7 @@ public class IdTokenInterceptor implements HandlerInterceptor {
      * @param nonce 카카오 소셜 로그인에서 제공하는 nonce값
      * @return
      */
-    public boolean validatePayload(Map<String, Object> payload, String nonce){
+    public boolean validatePayload(Map<String, Object> payload){
         log.info("start validatePayload");
         // 페이로드의 iss 값이 https://kauth.kakao.com와 일치하는지 확인
         if(!payload.get("iss").equals("https://kauth.kakao.com")){
@@ -96,14 +99,8 @@ public class IdTokenInterceptor implements HandlerInterceptor {
 
         if(exp > now){
             log.error("유효기간 만료");
-            throw new JwtExpiredException(EXPIRED_TOKEN);
+            throw new JwtExpiredException();
         }
-
-        if(!payload.get("nonce").equals(nonce)){
-            log.error("nonce값 불일치");
-            return false;
-        }
-
 
         return true;
     }
@@ -135,9 +132,9 @@ public class IdTokenInterceptor implements HandlerInterceptor {
 
             DecodedJWT jwt = verifier.verify(idToken);
         }catch (SignatureVerificationException | JWTDecodeException e){
-            throw new JwtInvalidException(INVALID_TOKEN);
+            throw new JwtInvalidException();
         }catch (TokenExpiredException e){
-            throw new JwtExpiredException(EXPIRED_TOKEN);
+            throw new JwtExpiredException();
         }
 
 
