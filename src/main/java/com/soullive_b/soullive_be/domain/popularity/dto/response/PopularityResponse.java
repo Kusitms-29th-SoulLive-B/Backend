@@ -15,14 +15,14 @@ import lombok.NoArgsConstructor;
 public class PopularityResponse {
     private Integer age;
 
-    private Gender gender;
+    private String gender;
 
     private Integer score;
 
     public static PopularityResponse of(Popularity popularity) {
         return PopularityResponse.builder()
                 .age(popularity.getAge())
-                .gender(popularity.getGender())
+                .gender(popularity.getGender().getDescription())
                 .score(popularity.getScore())
                 .build();
     }

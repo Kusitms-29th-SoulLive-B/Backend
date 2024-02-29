@@ -31,8 +31,6 @@ import java.util.List;
 public class ModelDetailResponse {
     private String name;
 
-    private String description;
-
     private String type;
 
     private String agency;
@@ -73,6 +71,7 @@ public class ModelDetailResponse {
                 .popularities(popularities.stream()
                         .map(PopularityResponse::of)
                         .toList())
+                .email(model.getEmail())
                 .build();
     }
 }

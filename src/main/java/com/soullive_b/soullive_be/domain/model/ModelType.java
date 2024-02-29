@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum ModelType {
     DUMMY_TYPE("더미 모델 유형"),
-    ACTOR("영화 ・ 드라마배우");
+    ACTOR("영화・드라마배우");
 
     private final String description;
 }
