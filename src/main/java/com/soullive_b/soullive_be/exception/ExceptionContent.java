@@ -6,7 +6,8 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum ExceptionContent {
-    NOT_FOUND_USER("유저가 존재하지 않습니다.");
+    NOT_FOUND_USER("유저가 존재하지 않습니다.",1000);
 
     private final String message;
+    private final Integer code;
 }
