@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 /**
  * User테이블 정의
  */
@@ -20,5 +22,13 @@ public class User {
     @Column(name = "user_id")
     private Long id;
 
+    private Long socialId;
+    private String enterprise;
+    private enum type{
 
+    };
+    private String email;
+    private boolean is_active;
+    private LocalDateTime createdAt;
+    private boolean isApproved;
 }
