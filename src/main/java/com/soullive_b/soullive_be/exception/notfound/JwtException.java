@@ -7,6 +7,6 @@ import org.springframework.http.HttpStatus;
 public class JwtException extends CustomException {
 
     public JwtException(ExceptionContent exceptionContent) {
-        super(HttpStatus.BAD_REQUEST, exceptionContent.getMessage());
+        super(HttpStatus.BAD_REQUEST, exceptionContent);
     }
 }

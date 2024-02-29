@@ -6,6 +6,6 @@ import org.springframework.http.HttpStatus;
 
 public abstract class NotFoundException extends CustomException {
     public NotFoundException(ExceptionContent exceptionContent) {
-        super(HttpStatus.NOT_FOUND, exceptionContent.getMessage());
+        super(HttpStatus.NOT_FOUND, exceptionContent);
     }
 }
