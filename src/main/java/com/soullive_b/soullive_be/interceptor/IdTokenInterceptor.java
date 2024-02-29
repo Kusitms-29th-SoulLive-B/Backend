@@ -65,9 +65,9 @@ public class IdTokenInterceptor implements HandlerInterceptor {
         }
 
         //카카오id 가져오기
-        Long kakao_id = Long.parseLong(payload.get("sub").toString());
-        log.info("kakao_id = {}", kakao_id);
-        request.setAttribute("kakao_id", kakao_id);
+        Long kakaoId = Long.parseLong(payload.get("sub").toString());
+        log.info("kakao_id = {}", kakaoId);
+        request.setAttribute("kakaoId", kakaoId);
         return true;
     }
 
