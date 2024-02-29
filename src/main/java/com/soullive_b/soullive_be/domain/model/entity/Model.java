@@ -10,6 +10,7 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Comment;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Comment("모델")
 public class Model {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

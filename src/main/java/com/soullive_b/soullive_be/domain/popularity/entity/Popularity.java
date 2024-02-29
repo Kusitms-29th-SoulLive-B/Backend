@@ -7,10 +7,12 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Comment;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Comment("연령대별 모델 선호도")
 public class Popularity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
