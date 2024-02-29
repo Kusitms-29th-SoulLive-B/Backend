@@ -115,14 +115,13 @@ public class JwtUtil {
      * @param expiredMs 만료시간 설정(2시간으로 설정함)
      * @return
      */
-    public static String createAccessToken(Long memberId, Long kakaoId, Long emailId, String secretKey){
+    public static String createAccessToken(Long memberId, Long kakaoId, String secretKey){
         Long expiredMs = Duration.ofHours(2).toMillis(); // 만료 시간 2시간
         //token에 들어있는 유저 정보를 사용하기 위함
         // token에 유저 정보 담기 위해 claim사용
         Claims claims = Jwts.claims();
-        claims.put("memberId", memberId);
+        claims.put("userId", memberId);
         claims.put("kakaoId", kakaoId);
-        claims.put("emailId", emailId);
 
         return Jwts.builder()
                 .setHeaderParam(Header.TYPE, "access_token")
