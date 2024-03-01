@@ -18,4 +18,6 @@ public class UserController {
     public BaseResponse<LoginResponse> login(@KakaoId Long kakaoId){
         return new BaseResponse<>(userService.login(kakaoId));
     }
+
+
 }
