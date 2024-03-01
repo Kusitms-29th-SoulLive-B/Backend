@@ -46,7 +46,8 @@ public class UserService {
     public SignupResponse signup(Long kakaoId, SignupRequest signupRequest) {
         //User객체 생성 및 request정보 넣기
         Long userId = makeUser(kakaoId, signupRequest);
-        return SignupResponse.of(userId);
+        String accessToken = JwtUtil.createAccessToken(userId, kakaoId, secretKey);
+        return SignupResponse.of(userId, accessToken);
     }
 
     private Long makeUser(Long kakaoId, SignupRequest signupRequest) {

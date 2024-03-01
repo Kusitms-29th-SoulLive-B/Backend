@@ -11,10 +11,12 @@ import lombok.NoArgsConstructor;
 @Getter
 public class SignupResponse {
     private Long userId;
+    private String accessToken;
 
-    public static SignupResponse of(Long userId){
+    public static SignupResponse of(Long userId, String accessToken){
         return SignupResponse.builder()
                 .userId(userId)
+                .accessToken(accessToken)
                 .build();
     }
 }
