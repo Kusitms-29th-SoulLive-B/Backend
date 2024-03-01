@@ -1,33 +1,30 @@
-package com.soullive_b.soullive_be.domain.advertisement.entity;
+package com.soullive_b.soullive_be.domain.usermodelselect.entity;
+
 
 import com.soullive_b.soullive_be.domain.model.entity.Model;
+import com.soullive_b.soullive_be.domain.user.EnterpriseType;
+import com.soullive_b.soullive_be.domain.user.entity.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
-import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
 
 @Entity
-@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Comment("모델 관련 광고")
-public class Advertisement {
+@Getter
+@Comment("유저들이 선택한 모델 관계 중간 테이블")
+public class UserModelSelect {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String logoUrl;
+    @Enumerated(EnumType.STRING)
+    private EnterpriseType enterpriseType;
 
-    private String imageUrl;
-
-    private LocalDate date;
-
-    private String productName;
-
-    private String content;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "model_id")

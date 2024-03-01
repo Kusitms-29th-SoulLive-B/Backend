@@ -1,6 +1,7 @@
 package com.soullive_b.soullive_be.domain.user.entity;
 
 import com.soullive_b.soullive_be.domain.user.EnterpriseType;
+import com.soullive_b.soullive_be.domain.usermodelselect.entity.UserModelSelect;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -9,6 +10,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -37,4 +39,7 @@ public class User {
     private LocalDateTime updatedAt;
 
     private Boolean isApproved;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserModelSelect> userModelSelects;
 }

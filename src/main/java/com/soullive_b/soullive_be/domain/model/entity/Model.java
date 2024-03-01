@@ -5,7 +5,9 @@ import com.soullive_b.soullive_be.domain.advertisement.entity.Advertisement;
 import com.soullive_b.soullive_be.domain.issue.entity.Issue;
 import com.soullive_b.soullive_be.domain.keyword.entity.Keyword;
 import com.soullive_b.soullive_be.domain.model.ModelType;
+import com.soullive_b.soullive_be.domain.modelkeyword.entity.ModelKeyword;
 import com.soullive_b.soullive_be.domain.popularity.entity.Popularity;
+import com.soullive_b.soullive_be.domain.usermodelselect.entity.UserModelSelect;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -26,6 +28,8 @@ public class Model {
 
     private String name;
 
+    private String imageUrl;
+
     private String agency;
 
     private String email;
@@ -36,7 +40,7 @@ public class Model {
     private LocalDate debutAt;
 
     @OneToMany(mappedBy = "model", cascade = CascadeType.ALL)
-    private List<Keyword> keywords;
+    private List<ModelKeyword> modelKeywords;
 
     @OneToMany(mappedBy = "model", cascade = CascadeType.ALL)
     private List<Activity> activities;
@@ -49,4 +53,7 @@ public class Model {
 
     @OneToMany(mappedBy = "model", cascade = CascadeType.ALL)
     private List<Popularity> popularities;
+
+    @OneToMany(mappedBy = "model", cascade = CascadeType.ALL)
+    private List<UserModelSelect> userModelSelects;
 }
