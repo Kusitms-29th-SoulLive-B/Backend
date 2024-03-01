@@ -1,10 +1,7 @@
 package com.soullive_b.soullive_be.domain.user.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -16,6 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,9 +22,7 @@ public class User {
 
     private Long socialId;
     private String enterprise;
-    private enum type{
-
-    };
+    private String type;
     private String email;
     private boolean is_active;
     private LocalDateTime createdAt;

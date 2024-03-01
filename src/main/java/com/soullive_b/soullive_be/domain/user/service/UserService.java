@@ -1,7 +1,10 @@
 package com.soullive_b.soullive_be.domain.user.service;
 
+import com.soullive_b.soullive_be.domain.user.Entity.User;
 import com.soullive_b.soullive_be.domain.user.repository.UserRepository;
+import com.soullive_b.soullive_be.domain.user.request.signup.SignupRequest;
 import com.soullive_b.soullive_be.domain.user.response.login.LoginResponse;
+import com.soullive_b.soullive_be.domain.user.response.signup.SignupResponse;
 import com.soullive_b.soullive_be.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,4 +42,18 @@ public class UserService {
 
         return LoginResponse.of(isUser, accessToken);
     }
+
+    public SignupResponse signup(Long kakaoId, SignupRequest signupRequest) {
+        //User객체 생성 및 request정보 넣기
+        makeUser(kakaoId, signupRequest);
+    }
+
+    private void makeUser(Long kakaoId, SignupRequest signupRequest) {
+        User user = User.builder().build();
+        user.setSocialId(kakaoId);
+        user.setEnterprise(signupRequest.getEnterprise());
+        user.set
+    }
+
+
 }
