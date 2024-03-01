@@ -45,14 +45,22 @@ public class UserService {
 
     public SignupResponse signup(Long kakaoId, SignupRequest signupRequest) {
         //User객체 생성 및 request정보 넣기
-        makeUser(kakaoId, signupRequest);
+        Long userId = makeUser(kakaoId, signupRequest);
+        return SignupResponse.of(userId);
     }
 
-    private void makeUser(Long kakaoId, SignupRequest signupRequest) {
+    private Long makeUser(Long kakaoId, SignupRequest signupRequest) {
         User user = User.builder().build();
         user.setSocialId(kakaoId);
         user.setEnterprise(signupRequest.getEnterprise());
-        user.set
+        user.setType(signupRequest.getType());
+        user.setEmail(signupRequest.getEmail());
+        user.set_active(true);
+        user.setApproved(false);
+
+        userRepository.save(user);
+
+        return user.getId();
     }
 
 
