@@ -1,6 +1,7 @@
 package com.soullive_b.soullive_be.config;
 
 import com.soullive_b.soullive_be.argumentResolver.KakaoIdArgumentResolver;
+import com.soullive_b.soullive_be.argumentResolver.UserIdArgumentResolver;
 import com.soullive_b.soullive_be.interceptor.IdTokenInterceptor;
 import com.soullive_b.soullive_be.interceptor.ServiceTokenInterceptor;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +35,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         resolvers.add(new KakaoIdArgumentResolver());
+        resolvers.add(new UserIdArgumentResolver());
     }
 
 }
