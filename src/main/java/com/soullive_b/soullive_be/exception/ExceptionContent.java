@@ -16,7 +16,13 @@ public enum ExceptionContent {
      */
     INVALID_TOKEN("유효하지 않은 토큰 입니다.", 3001),
     EXPIRED_TOKEN("만료된 토큰 입니다.", 3002),
-    UNSUPPORTED_TOKEN_TYPE("지원되지 않는 토큰형식입니다.", 3003);
+    UNSUPPORTED_TOKEN_TYPE("지원되지 않는 토큰형식입니다.", 3003),
+
+    /**
+     * 회원가입 관련 에러 : 4000
+     */
+    NULL_INFORMATION("빈 값이 존재합니다", 4001),
+    NOT_EMAIL("이메일 형식을 만족하지 않습니다", 4002);
 
     private final String message;
     private final Integer code;
