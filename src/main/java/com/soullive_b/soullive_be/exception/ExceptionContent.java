@@ -23,9 +23,17 @@ public enum ExceptionContent {
     /**
      * 모델 관련 에러 : 4000
      */
-    NOT_FOUND_MODEL("모델이 존재하지 않습니다.", 4001);
+    NOT_FOUND_MODEL("모델이 존재하지 않습니다.", 4001),
 
+    /**
+     * 모델 선호 계층 관련 에러 : 5000
+     */
+    NOT_FOUND_POPULARITY("모델의 선호 계층이 존재하지 않습니다.",5001),
 
+    /**
+     * 키원드 관련 에러 : 6000
+     */
+    NOT_FOUND_KEYWORD("키워드가 존재하지 않습니다.",6001);
 
     private final String message;
     private final Integer code;
