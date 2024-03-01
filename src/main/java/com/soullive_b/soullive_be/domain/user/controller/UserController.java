@@ -8,10 +8,7 @@ import com.soullive_b.soullive_be.domain.user.response.signup.SignupResponse;
 import com.soullive_b.soullive_be.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -24,7 +21,7 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public BaseResponse<SignupResponse> signup(@Validated SignupRequest signupRequest,
+    public BaseResponse<SignupResponse> signup(@Validated @ModelAttribute SignupRequest signupRequest,
                                                @KakaoId Long kakaoId){
         return new BaseResponse<>(userService.signup(kakaoId, signupRequest));
     }

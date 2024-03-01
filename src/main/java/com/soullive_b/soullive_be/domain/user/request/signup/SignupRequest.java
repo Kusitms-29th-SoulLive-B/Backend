@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * 회원가입 api request 정의
@@ -12,11 +13,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 public class SignupRequest {
     @NotBlank(message = "enterprise : 기업명이 비어있으면 안됩니다.")
     private String enterprise;
     @NotBlank(message = "type : 기업분류가 비어있으면 안됩니다.")
     private String type;
+    @NotBlank(message = "email : 메일이 비어있으면 안됩니다.")
     @Email(message = "email : 올바른 메일 형식을 지켜주세요")
     private String email;
 }

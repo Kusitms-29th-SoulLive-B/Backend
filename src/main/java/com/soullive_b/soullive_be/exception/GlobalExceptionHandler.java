@@ -12,7 +12,6 @@ import static com.soullive_b.soullive_be.exception.ExceptionContent.NOT_EMAIL;
 import static com.soullive_b.soullive_be.exception.ExceptionContent.NULL_INFORMATION;
 
 @RestControllerAdvice
-@Priority(0)
 public class GlobalExceptionHandler {
 
     @ExceptionHandler
@@ -34,7 +33,6 @@ public class GlobalExceptionHandler {
             String description = bindingResult.getFieldError().getDefaultMessage();
             String bindAnnotation = bindingResult.getFieldError().getCode();
 
-            String errorVariable = description.split(" : ")[0];
             String errorContent = description.split(" : ")[1];
             if(bindAnnotation.equals("NotBlank")){
                 return makeResponse(errorContent, NULL_INFORMATION.getCode());
