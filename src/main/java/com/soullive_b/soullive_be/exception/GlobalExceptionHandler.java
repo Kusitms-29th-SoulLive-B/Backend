@@ -1,8 +1,10 @@
 package com.soullive_b.soullive_be.exception;
 
 import com.soullive_b.soullive_be.exception.dto.ExceptionResponse;
+import jakarta.annotation.Priority;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -10,6 +12,7 @@ import static com.soullive_b.soullive_be.exception.ExceptionContent.NOT_EMAIL;
 import static com.soullive_b.soullive_be.exception.ExceptionContent.NULL_INFORMATION;
 
 @RestControllerAdvice
+@Priority(0)
 public class GlobalExceptionHandler {
 
     @ExceptionHandler
@@ -17,6 +20,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .status(exception.getHttpStatus())
                 .body(ExceptionResponse.of(exception.getContent()));
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ExceptionResponse handle_MethodArgumentNotValidException(
+            MethodArgumentNotValidException e
+    ){
+        return makeErrorResponse(e.getBindingResult());
     }
 
     private ExceptionResponse makeErrorResponse(BindingResult bindingResult){
