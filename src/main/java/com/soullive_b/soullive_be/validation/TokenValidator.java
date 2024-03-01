@@ -1,6 +1,6 @@
 package com.soullive_b.soullive_be.validation;
 
-import com.soullive_b.soullive_be.exception.notfound.JwtUnsupportedTokenTypeException;
+import com.soullive_b.soullive_be.exception.jwt.JwtUnsupportedTokenTypeException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;

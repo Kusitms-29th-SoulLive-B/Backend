@@ -1,6 +1,4 @@
-package com.soullive_b.soullive_be.exception.notfound;
-
-import com.soullive_b.soullive_be.exception.ExceptionContent;
+package com.soullive_b.soullive_be.exception.jwt;
 
 import static com.soullive_b.soullive_be.exception.ExceptionContent.EXPIRED_TOKEN;
 

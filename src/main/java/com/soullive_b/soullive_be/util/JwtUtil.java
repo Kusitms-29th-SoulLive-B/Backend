@@ -1,8 +1,8 @@
 package com.soullive_b.soullive_be.util;
 
 
-import com.soullive_b.soullive_be.exception.notfound.JwtExpiredException;
-import com.soullive_b.soullive_be.exception.notfound.JwtInvalidException;
+import com.soullive_b.soullive_be.exception.jwt.JwtExpiredException;
+import com.soullive_b.soullive_be.exception.jwt.JwtInvalidException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.SignatureException;
 import lombok.extern.slf4j.Slf4j;

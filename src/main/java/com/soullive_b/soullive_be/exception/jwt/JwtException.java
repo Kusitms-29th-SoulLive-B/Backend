@@ -1,4 +1,4 @@
-package com.soullive_b.soullive_be.exception.notfound;
+package com.soullive_b.soullive_be.exception.jwt;
 
 import com.soullive_b.soullive_be.exception.CustomException;
 import com.soullive_b.soullive_be.exception.ExceptionContent;
