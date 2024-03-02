@@ -21,7 +21,13 @@ public enum ExceptionContent {
     /**
      * 모델 관련 에러 : 4000
      */
-    NOT_FOUND_MODEL("모델이 존재하지 않습니다.", 4001);
+    NOT_FOUND_MODEL("모델이 존재하지 않습니다.", 4001),
+
+    /**
+     * 회원가입 관련 에러 : 5000
+     */
+    NULL_INFORMATION("빈 값이 존재합니다", 5001),
+    NOT_EMAIL("이메일 형식을 만족하지 않습니다", 5002);
 
     private final String message;
     private final Integer code;
