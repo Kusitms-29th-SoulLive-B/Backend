@@ -50,7 +50,7 @@ public class ModelController {
                         
             request body에 키워드를 담아서 요청해주세요.
             담을 수 있는 키워드 목록
-            (브랜드 평판 1위, 떠오르는, 고급스러운, 친근한, 감각있는, 부드러운, 성실한, 밝은, 열정적인, 힙한, 상큼한, 활기찬, 유머스러운, 청순한)
+            (브랜드 평판 1위, 떠오르는, 고급정스러운, 친근한, 감각있는, 부드러운, 성실한, 밝은, 열정적인, 힙한, 상큼한, 활기찬, 유머스러운, 청순한)
             """)
     @PostMapping("/keyword")
     public BaseResponse<List<ModelByKeywordResponse>> getModelsByKeyword(@Validated @RequestBody ModelByKeywordRequest modelByKeywordRequest){
