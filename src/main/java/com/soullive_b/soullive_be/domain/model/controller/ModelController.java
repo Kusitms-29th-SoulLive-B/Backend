@@ -8,8 +8,10 @@ import com.soullive_b.soullive_be.domain.model.dto.response.ModelResponse;
 import com.soullive_b.soullive_be.domain.model.service.ModelService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -51,7 +53,7 @@ public class ModelController {
             (브랜드 평판 1위, 떠오르는, 고급스러운, 친근한, 감각있는, 부드러운, 성실한, 밝은, 열정적인, 힙한, 상큼한, 활기찬, 유머스러운, 청순한)
             """)
     @PostMapping("/keyword")
-    public BaseResponse<List<ModelByKeywordResponse>> getModelsByKeyword(@RequestBody ModelByKeywordRequest modelByKeywordRequest){
+    public BaseResponse<List<ModelByKeywordResponse>> getModelsByKeyword(@Validated @RequestBody ModelByKeywordRequest modelByKeywordRequest){
         return new BaseResponse<>(modelService.getModelsByKeyword(modelByKeywordRequest));
     }
 }
