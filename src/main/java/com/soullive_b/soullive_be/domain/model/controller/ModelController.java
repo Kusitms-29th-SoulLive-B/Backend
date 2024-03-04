@@ -45,7 +45,7 @@ public class ModelController {
         return new BaseResponse<>(modelService.getModelList());
     }
 
-    @Operation(summary = "카카오 소셜로그인하기", description = """
+    @Operation(summary = "키워드와 관련된 모델광고들 데이터를 조회", description = """
             홈 화면에서 키워드 선택시 해당 키워드와 관련된 모델광고들 데이터를 조회할때 사용됩니다.
                         
             request body에 키워드를 담아서 요청해주세요.
