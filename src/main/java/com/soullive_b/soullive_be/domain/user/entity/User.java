@@ -1,20 +1,19 @@
 package com.soullive_b.soullive_be.domain.user.entity;
 
-import com.soullive_b.soullive_be.domain.user.EnterpriseType;
-import com.soullive_b.soullive_be.domain.usermodelselect.entity.UserModelSelect;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
+/**
+ * User테이블 정의
+ */
+@Builder
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

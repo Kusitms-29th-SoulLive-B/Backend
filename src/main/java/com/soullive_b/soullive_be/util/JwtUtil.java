@@ -108,19 +108,19 @@ public class JwtUtil {
     /**
      * 액세스 토큰을 발급해주는 메소드이다.
      * 다음 2개 파라미터는 액세스 토큰 claim에 넣어줄 정보를 나타냄
-     * @param memberId member테이블의 id정보
+     * @param userId member테이블의 id정보
      * @param kakaoId user_token테이블의 kakaoId정보
      *                -----
      * @param secretKey 토큰을 디코딩하기 위해 쓰이는 시크릿키
      * @param expiredMs 만료시간 설정(2시간으로 설정함)
      * @return
      */
-    public static String createAccessToken(Long memberId, Long kakaoId, String secretKey){
+    public static String createAccessToken(Long userId, Long kakaoId, String secretKey){
         Long expiredMs = Duration.ofHours(2).toMillis(); // 만료 시간 2시간
         //token에 들어있는 유저 정보를 사용하기 위함
         // token에 유저 정보 담기 위해 claim사용
         Claims claims = Jwts.claims();
-        claims.put("userId", memberId);
+        claims.put("userId", userId);
         claims.put("kakaoId", kakaoId);
 
         return Jwts.builder()

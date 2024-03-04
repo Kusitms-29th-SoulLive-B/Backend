@@ -1,16 +1,7 @@
 package com.soullive_b.soullive_be.domain.user.service;
 
-import com.soullive_b.soullive_be.domain.keyword.entity.Keyword;
-import com.soullive_b.soullive_be.domain.keyword.repository.KeywordRepository;
-import com.soullive_b.soullive_be.domain.model.entity.Model;
-import com.soullive_b.soullive_be.domain.model.repository.ModelRepository;
-import com.soullive_b.soullive_be.domain.user.dto.response.HomeDataResponse;
-import com.soullive_b.soullive_be.domain.user.entity.User;
 import com.soullive_b.soullive_be.domain.user.repository.UserRepository;
 import com.soullive_b.soullive_be.domain.user.response.LoginResponse;
-import com.soullive_b.soullive_be.domain.usermodelselect.entity.UserModelSelect;
-import com.soullive_b.soullive_be.domain.usermodelselect.repository.UserModelSelectRepository;
-import com.soullive_b.soullive_be.exception.notfound.NotFoundUserException;
 import com.soullive_b.soullive_be.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -66,4 +57,27 @@ public class UserService {
                 keywords
         );
     }
+
+    public SignupResponse signup(Long kakaoId, SignupRequest signupRequest) {
+        //User객체 생성 및 request정보 넣기
+        Long userId = makeUser(kakaoId, signupRequest);
+        String accessToken = JwtUtil.createAccessToken(userId, kakaoId, secretKey);
+        return SignupResponse.of(userId, accessToken);
+    }
+
+    private Long makeUser(Long kakaoId, SignupRequest signupRequest) {
+        User user = User.builder().build();
+        user.setSocialId(kakaoId);
+        user.setEnterprise(signupRequest.getEnterprise());
+        user.setType(signupRequest.getType());
+        user.setEmail(signupRequest.getEmail());
+        user.set_active(true);
+        user.setApproved(false);
+
+        userRepository.save(user);
+
+        return user.getId();
+    }
+
+
 }

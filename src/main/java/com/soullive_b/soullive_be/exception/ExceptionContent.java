@@ -6,8 +6,6 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum ExceptionContent {
-
-
     /**
      * 유저 관련 에러 : 2000
      */
@@ -26,14 +24,20 @@ public enum ExceptionContent {
     NOT_FOUND_MODEL("모델이 존재하지 않습니다.", 4001),
 
     /**
-     * 모델 선호 계층 관련 에러 : 5000
+     * 회원가입 관련 에러 : 5000
      */
-    NOT_FOUND_POPULARITY("모델의 선호 계층이 존재하지 않습니다.",5001),
+    NULL_INFORMATION("빈 값이 존재합니다", 5001),
+    NOT_EMAIL("이메일 형식을 만족하지 않습니다", 5002),
 
     /**
-     * 키원드 관련 에러 : 6000
+     * 모델 선호 계층 관련 에러 : 6000
      */
-    NOT_FOUND_KEYWORD("키워드가 존재하지 않습니다.",6001);
+    NOT_FOUND_POPULARITY("모델의 선호 계층이 존재하지 않습니다.",6001),
+
+    /**
+     * 키워드 관련 에러 : 7000
+     */
+    NOT_FOUND_KEYWORD("키워드가 존재하지 않습니다.",7001);
 
     private final String message;
     private final Integer code;
