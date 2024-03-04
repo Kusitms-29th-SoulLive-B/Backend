@@ -21,7 +21,13 @@ public enum ExceptionContent {
     /**
      * 모델 관련 에러 : 4000
      */
-    NOT_FOUND_MODEL("모델이 존재하지 않습니다.", 4001);
+    NOT_FOUND_MODEL("모델이 존재하지 않습니다.", 4001),
+
+    /**
+     * S3 관련 에러 : 5000
+     */
+    NOT_FOUND_S3("사진 업로드 혹은 삭제에 실패하였습니다", 5001);
+
 
     private final String message;
     private final Integer code;
