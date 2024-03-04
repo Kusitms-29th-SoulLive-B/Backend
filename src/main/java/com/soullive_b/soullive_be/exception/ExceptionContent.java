@@ -37,7 +37,12 @@ public enum ExceptionContent {
     /**
      * 키워드 관련 에러 : 7000
      */
-    NOT_FOUND_KEYWORD("키워드가 존재하지 않습니다.",7001);
+    NOT_FOUND_KEYWORD("키워드가 존재하지 않습니다.",7001),
+
+    /**
+     * 기업 분류 관련 에러 : 8000
+     */
+    NOT_FOUND_ENTERPRISE_TYPE("기업 분류가 존재하지 않습니다.", 8001);
 
     private final String message;
     private final Integer code;

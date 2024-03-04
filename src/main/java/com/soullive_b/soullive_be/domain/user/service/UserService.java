@@ -1,7 +1,19 @@
 package com.soullive_b.soullive_be.domain.user.service;
 
+import com.soullive_b.soullive_be.domain.keyword.entity.Keyword;
+import com.soullive_b.soullive_be.domain.keyword.repository.KeywordRepository;
+import com.soullive_b.soullive_be.domain.model.entity.Model;
+import com.soullive_b.soullive_be.domain.model.repository.ModelRepository;
+import com.soullive_b.soullive_be.domain.user.EnterpriseType;
+import com.soullive_b.soullive_be.domain.user.entity.User;
 import com.soullive_b.soullive_be.domain.user.repository.UserRepository;
-import com.soullive_b.soullive_be.domain.user.response.LoginResponse;
+import com.soullive_b.soullive_be.domain.user.request.signup.SignupRequest;
+import com.soullive_b.soullive_be.domain.user.response.HomeDataResponse;
+import com.soullive_b.soullive_be.domain.user.response.login.LoginResponse;
+import com.soullive_b.soullive_be.domain.user.response.signup.SignupResponse;
+import com.soullive_b.soullive_be.domain.usermodelselect.entity.UserModelSelect;
+import com.soullive_b.soullive_be.domain.usermodelselect.repository.UserModelSelectRepository;
+import com.soullive_b.soullive_be.exception.notfound.NotFoundUserException;
 import com.soullive_b.soullive_be.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -48,7 +60,7 @@ public class UserService {
         User user = userRepository.findBySocialId(kakaoId)
                 .orElseThrow(NotFoundUserException::new);
         List<Model> recommendModels = modelRepository.findTop6ByOrderByIdAsc();
-        List<UserModelSelect> userModelSelects = userModelSelectRepository.findByEnterpriseType(user.getType());
+        List<UserModelSelect> userModelSelects = userModelSelectRepository.findByEnterpriseType(user.getEnterpriseType());
         List<Keyword> keywords = keywordRepository.findTop4ByOrderByPreferenceDesc();
         return HomeDataResponse.of(
                 user,
@@ -69,10 +81,10 @@ public class UserService {
         User user = User.builder().build();
         user.setSocialId(kakaoId);
         user.setEnterprise(signupRequest.getEnterprise());
-        user.setType(signupRequest.getType());
+        user.setEnterpriseType(EnterpriseType.kor2code(signupRequest.getType()));
         user.setEmail(signupRequest.getEmail());
-        user.set_active(true);
-        user.setApproved(false);
+        user.setIsActive(true);
+        user.setIsApproved(false);
 
         userRepository.save(user);
 

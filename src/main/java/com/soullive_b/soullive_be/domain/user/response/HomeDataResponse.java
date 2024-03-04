@@ -1,4 +1,4 @@
-package com.soullive_b.soullive_be.domain.user.dto.response;
+package com.soullive_b.soullive_be.domain.user.response;
 
 import com.soullive_b.soullive_be.domain.keyword.dto.response.KeywordResponse;
 import com.soullive_b.soullive_be.domain.keyword.entity.Keyword;
@@ -30,7 +30,7 @@ public class HomeDataResponse {
     public static HomeDataResponse of(User user, List<Model> recommendModels, List<UserModelSelect> userModelSelects, List<Keyword> keywords) {
         return HomeDataResponse.builder()
                 .name(user.getEnterprise())
-                .type(user.getType().getDescription())
+                .type(user.getEnterpriseType().getDescription())
                 .recommendModels(recommendModels.stream()
                         .map(RecommendModelResponse::of)
                         .toList())
