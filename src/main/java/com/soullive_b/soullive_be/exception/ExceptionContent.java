@@ -24,10 +24,15 @@ public enum ExceptionContent {
     NOT_FOUND_MODEL("모델이 존재하지 않습니다.", 4001),
 
     /**
-     * S3 관련 에러 : 5000
+     * 회원가입 관련 에러 : 5000
      */
-    NOT_FOUND_S3("사진 업로드 혹은 삭제에 실패하였습니다", 5001);
+    NULL_INFORMATION("빈 값이 존재합니다", 5001),
+    NOT_EMAIL("이메일 형식을 만족하지 않습니다", 5002),
 
+    /**
+     * S3 관련 에러 : 6000
+     */
+    NOT_FOUND_S3("사진 업로드 혹은 삭제에 실패하였습니다", 6001);
 
     private final String message;
     private final Integer code;
