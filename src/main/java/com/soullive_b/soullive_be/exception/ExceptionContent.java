@@ -42,7 +42,12 @@ public enum ExceptionContent {
     /**
      * 기업 분류 관련 에러 : 8000
      */
-    NOT_FOUND_ENTERPRISE_TYPE("기업 분류가 존재하지 않습니다.", 8001);
+    NOT_FOUND_ENTERPRISE_TYPE("기업 분류가 존재하지 않습니다.", 8001),
+
+    /**
+     * S3 관련 에러 : 9000
+     */
+    NOT_FOUND_S3("사진 업로드 혹은 삭제에 실패하였습니다", 9001);
 
     private final String message;
     private final Integer code;
