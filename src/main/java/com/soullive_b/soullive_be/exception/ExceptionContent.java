@@ -30,9 +30,24 @@ public enum ExceptionContent {
     NOT_EMAIL("이메일 형식을 만족하지 않습니다", 5002),
 
     /**
-     * S3 관련 에러 : 6000
+     * 모델 선호 계층 관련 에러 : 6000
      */
-    NOT_FOUND_S3("사진 업로드 혹은 삭제에 실패하였습니다", 6001);
+    NOT_FOUND_POPULARITY("모델의 선호 계층이 존재하지 않습니다.",6001),
+
+    /**
+     * 키워드 관련 에러 : 7000
+     */
+    NOT_FOUND_KEYWORD("키워드가 존재하지 않습니다.",7001),
+
+    /**
+     * 기업 분류 관련 에러 : 8000
+     */
+    NOT_FOUND_ENTERPRISE_TYPE("기업 분류가 존재하지 않습니다.", 8001),
+
+    /**
+     * S3 관련 에러 : 9000
+     */
+    NOT_FOUND_S3("사진 업로드 혹은 삭제에 실패하였습니다", 9001);
 
     private final String message;
     private final Integer code;
