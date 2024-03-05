@@ -25,7 +25,7 @@ public class Popularity {
 
     private Integer score;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "model_id")
     private Model model;
 }

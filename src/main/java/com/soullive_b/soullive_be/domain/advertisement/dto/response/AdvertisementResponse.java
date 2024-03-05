@@ -15,8 +15,8 @@ public class AdvertisementResponse {
 
     public static AdvertisementResponse of(Advertisement advertisement) {
         return AdvertisementResponse.builder()
-                .logo_url(advertisement.getLogo_url())
-                .image_url(advertisement.getImage_url())
+                .logo_url(advertisement.getLogoUrl())
+                .image_url(advertisement.getImageUrl())
                 .build();
     }
 }

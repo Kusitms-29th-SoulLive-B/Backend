@@ -29,7 +29,8 @@ public class WebConfig implements WebMvcConfigurer {
                 .addPathPatterns("/user/login");
         registry.addInterceptor(serviceTokenInterceptor)
                 .order(1)
-                .addPathPatterns("/user/signup");
+                .addPathPatterns("/user/signup")
+                .addPathPatterns("/user/home");
     }
 
     @Override

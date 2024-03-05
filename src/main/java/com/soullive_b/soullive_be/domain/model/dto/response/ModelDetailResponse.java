@@ -12,6 +12,7 @@ import com.soullive_b.soullive_be.domain.keyword.dto.response.KeywordResponse;
 import com.soullive_b.soullive_be.domain.keyword.entity.Keyword;
 import com.soullive_b.soullive_be.domain.model.ModelType;
 import com.soullive_b.soullive_be.domain.model.entity.Model;
+import com.soullive_b.soullive_be.domain.modelkeyword.entity.ModelKeyword;
 import com.soullive_b.soullive_be.domain.popularity.dto.response.PopularityResponse;
 import com.soullive_b.soullive_be.domain.popularity.entity.Popularity;
 import jakarta.persistence.CascadeType;
@@ -31,6 +32,8 @@ import java.util.List;
 public class ModelDetailResponse {
     private String name;
 
+    private String imageUrl;
+
     private String type;
 
     private String agency;
@@ -46,19 +49,25 @@ public class ModelDetailResponse {
 
     private List<AdvertisementResponse> advertisements;
 
+    private String target;
+
     private List<PopularityResponse> popularities;
 
     private String email;
 
-    public static ModelDetailResponse of(Model model, List<Keyword> keywords, List<Issue> issues, List<Activity> activities, List<Advertisement> advertisements, List<Popularity> popularities){
+    public static ModelDetailResponse of(Model model, List<Issue> issues, List<Activity> activities, List<Advertisement> advertisements, Popularity popularity,List<Popularity> popularities) {
+        List<KeywordResponse> keywords = model.getModelKeywords().stream()
+                .map(ModelKeyword::getKeyword)
+                .map(KeywordResponse::of)
+                .toList();
+        String target = popularity.getAge() + "대 " + popularity.getGender().getDescription();
         return ModelDetailResponse.builder()
                 .name(model.getName())
+                .imageUrl(model.getImageUrl())
                 .type(model.getType().getDescription())
                 .agency(model.getAgency())
                 .debutAt(model.getDebutAt())
-                .keywords(keywords.stream()
-                        .map(KeywordResponse::of)
-                        .toList())
+                .keywords(keywords)
                 .issues(issues.stream()
                         .map(IssueResponse::of)
                         .toList())
@@ -68,6 +77,7 @@ public class ModelDetailResponse {
                 .advertisements(advertisements.stream()
                         .map(AdvertisementResponse::of)
                         .toList())
+                .target(target)
                 .popularities(popularities.stream()
                         .map(PopularityResponse::of)
                         .toList())

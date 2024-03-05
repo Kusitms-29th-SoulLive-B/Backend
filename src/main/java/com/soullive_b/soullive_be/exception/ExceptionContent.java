@@ -27,7 +27,22 @@ public enum ExceptionContent {
      * 회원가입 관련 에러 : 5000
      */
     NULL_INFORMATION("빈 값이 존재합니다", 5001),
-    NOT_EMAIL("이메일 형식을 만족하지 않습니다", 5002);
+    NOT_EMAIL("이메일 형식을 만족하지 않습니다", 5002),
+
+    /**
+     * 모델 선호 계층 관련 에러 : 6000
+     */
+    NOT_FOUND_POPULARITY("모델의 선호 계층이 존재하지 않습니다.",6001),
+
+    /**
+     * 키워드 관련 에러 : 7000
+     */
+    NOT_FOUND_KEYWORD("키워드가 존재하지 않습니다.",7001),
+
+    /**
+     * 기업 분류 관련 에러 : 8000
+     */
+    NOT_FOUND_ENTERPRISE_TYPE("기업 분류가 존재하지 않습니다.", 8001);
 
     private final String message;
     private final Integer code;
