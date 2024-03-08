@@ -5,6 +5,7 @@ import com.soullive_b.soullive_be.domain.model.dto.request.ModelByKeywordRequest
 import com.soullive_b.soullive_be.domain.model.dto.response.ModelByKeywordResponse;
 import com.soullive_b.soullive_be.domain.model.dto.response.ModelDetailResponse;
 import com.soullive_b.soullive_be.domain.model.dto.response.ModelResponse;
+import com.soullive_b.soullive_be.domain.model.dto.response.SearchModelResponse;
 import com.soullive_b.soullive_be.domain.model.service.ModelService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -55,5 +56,11 @@ public class ModelController {
     @PostMapping("/keyword")
     public BaseResponse<List<ModelByKeywordResponse>> getModelsByKeyword(@Validated @RequestBody ModelByKeywordRequest modelByKeywordRequest){
         return new BaseResponse<>(modelService.getModelsByKeyword(modelByKeywordRequest));
+    }
+
+    @GetMapping("/search")
+    public BaseResponse<List<SearchModelResponse>> searchModelsByKeyword(@RequestParam String keyword) {
+        List<SearchModelResponse> searchModelResponses = modelService.searchModelsByKeyword(keyword);
+        return new BaseResponse<>(searchModelResponses);
     }
 }
