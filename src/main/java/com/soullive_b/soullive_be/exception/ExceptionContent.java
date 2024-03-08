@@ -47,7 +47,13 @@ public enum ExceptionContent {
     /**
      * S3 관련 에러 : 9000
      */
-    NOT_FOUND_S3("사진 업로드 혹은 삭제에 실패하였습니다", 9001);
+    NOT_FOUND_S3("사진 업로드 혹은 삭제에 실패하였습니다", 9001),
+
+    /**
+     * 유저모델 관련 에러 : 10000
+     */
+    BAD_REQUEST_SELECT("이미 존재하는 스크랩입니다.", 10001),
+    NOT_FOUND_SELECT("존재하지 않는 스크랩입니다.", 10002);
 
     private final String message;
     private final Integer code;
