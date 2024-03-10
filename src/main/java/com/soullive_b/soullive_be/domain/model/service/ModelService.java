@@ -10,6 +10,7 @@ import com.soullive_b.soullive_be.domain.model.dto.request.ModelByKeywordRequest
 import com.soullive_b.soullive_be.domain.model.dto.response.ModelByKeywordResponse;
 import com.soullive_b.soullive_be.domain.model.dto.response.ModelDetailResponse;
 import com.soullive_b.soullive_be.domain.model.dto.response.ModelResponse;
+import com.soullive_b.soullive_be.domain.model.dto.response.SearchModelResponse;
 import com.soullive_b.soullive_be.domain.model.entity.Model;
 import com.soullive_b.soullive_be.domain.model.repository.ModelRepository;
 import com.soullive_b.soullive_be.domain.modelkeyword.entity.ModelKeyword;
@@ -19,6 +20,8 @@ import com.soullive_b.soullive_be.exception.notfound.NotFoundKeywordException;
 import com.soullive_b.soullive_be.exception.notfound.NotFoundModelException;
 import com.soullive_b.soullive_be.exception.notfound.NotFoundPopularityException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -75,5 +78,16 @@ public class ModelService {
         }
         Collections.sort(ret, (a, b) -> b.getDate().compareTo(a.getDate()));
         return ret;
+    }
+
+    public List<SearchModelResponse> searchModelsByKeyword(String keyword) {
+        PageRequest pageRequest = PageRequest.of(0, 5);
+        Page<Model> keywordModelList = modelRepository.findTop5ByNameContainingKeywordOrderByIdAsc(keyword, pageRequest);
+
+        List<SearchModelResponse> result = new ArrayList<>();
+        for(Model model : keywordModelList) {
+            result.add(SearchModelResponse.of(model));
+        }
+        return result;
     }
 }

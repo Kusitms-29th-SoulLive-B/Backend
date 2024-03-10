@@ -5,14 +5,14 @@ import com.soullive_b.soullive_be.domain.model.entity.Model;
 import com.soullive_b.soullive_be.domain.user.EnterpriseType;
 import com.soullive_b.soullive_be.domain.user.entity.User;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Comment;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@Builder
+@AllArgsConstructor
 @Comment("유저들이 선택한 모델 관계 중간 테이블")
 public class UserModelSelect {
     @Id

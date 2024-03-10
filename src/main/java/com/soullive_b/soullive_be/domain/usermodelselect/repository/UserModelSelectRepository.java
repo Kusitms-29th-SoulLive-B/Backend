@@ -10,4 +10,10 @@ import java.util.List;
 
 public interface UserModelSelectRepository extends JpaRepository<UserModelSelect, Long> {
     List<UserModelSelect> findByEnterpriseType(EnterpriseType enterpriseType);
+
+    boolean existsByModelAndUser(Model model, User user);
+
+    List<UserModelSelect> findByUser(User user);
+
+    UserModelSelect findByModelAndUser(Model model, User user);
 }
